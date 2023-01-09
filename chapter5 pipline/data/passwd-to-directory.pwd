@@ -1,0 +1,8 @@
+jones:*:271:273:Adrian W. Jones/OSD211/555-0123:/var/db/appinstalld:/usr/bin/false
+dorothy:*:272:274:Dorothy Gale/KNS321/555-0044:/var/db/installcoordinationd:/usr/bin/false
+toto:*:275:275:Toto Gale/KNS322/555-0045:/var/empty:/usr/bin/false
+ben:*:277:277:Ben Franklin/OSD212/555-0022:/var/db/rmd:/usr/bin/false
+jhancock:*:278:278:John Hancook/SIG435/555-0099:/var/db/accessoryupdater:/usr/bin/false
+betsy:*:280:280:Betsy Rosss/BMD17/555-0033:/var/empty:/usr/bin/false
+tj:*:281:281:Thomas Jefferson/BMD19/555-0095:/var/empty:/usr/bin/false
+george:*:282:282:George Washington/BST999/555-0001:/var/empty:/usr/bin/false
