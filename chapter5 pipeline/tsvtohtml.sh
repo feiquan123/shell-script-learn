@@ -2,7 +2,7 @@
 # 将 tsv 文件转化为 html
 #
 # 用法：
-#	./tsvtohtml.sh <passwd-to-directory.out >passwd-to-directory.html 
+#	tsvtohtml.sh <passwd-to-directory.out >passwd-to-directory.html 
 
 cat <<EOF
 <!DOCTYPE HTML PUBLIC "-/ /IETF/ /DTD HTML/ /EN//3.0">

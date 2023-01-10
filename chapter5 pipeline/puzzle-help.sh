@@ -3,11 +3,11 @@
 # word lists
 #
 # 用法
-# 	./puzzle-help.sh egrep-pattern [word-list-files]
+# 	puzzle-help.sh egrep-pattern [word-list-files]
 #
 # 案例
-# 	./puzzle-help.sh '^b.....[ab]...$' | fmt
-#	./puzzle-help.sh '[^aoeiuy]{6}'
+# 	puzzle-help.sh '^b.....[ab]...$' | fmt
+#	puzzle-help.sh '[^aoeiuy]{6}'
 
 FILES="
 	/usr/dict/words

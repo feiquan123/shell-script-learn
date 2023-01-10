@@ -2,7 +2,7 @@
 # 过滤 /etc/passwd 生成办公室名录
 # 
 # 语法：
-#	./passwd-to-directory.sh < ./data/passwd-to-directory.pwd > passwd-to-directory.out
+#	passwd-to-directory.sh < ./data/passwd-to-directory.pwd > passwd-to-directory.out
 
 # 限制临时文件访问权限
 umask 077
