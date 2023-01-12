@@ -6,17 +6,23 @@
 # 按照单词于标签由小到达排序
 #
 # 语法：
-# 	taglist.sh xml-file
+# 	taglist.sh xml-files
 
-cat "$1" |
-	sed -e "s#\(<[^ ]*\) [^<>]*#\1#g" -e 's#\(<[^/]\)#\n\1#g' |
-		tr ' (){}[]' '\n\n\n\n\n\n\n' |
-			egrep '>[^<>]+</' |
-				awk -F'[<>]' -v FILE="$1" '{ printf("%-31s\t%-15s\t%s\n", $3, $2, FILE) }' |
-					sort |
-						uniq -c |
-							sort -k2,2 -k3,3 |
-								awk '{
-									print ($2 == Last)? ($0 " <----") : $0
-									Last = $2
-								}'
+process(){
+	cat "$1" |
+		sed -e "s#\(<[^ ]*\) [^<>]*#\1#g" -e 's#\(<[^/]\)#\n\1#g' |
+			tr ' (){}[]' '\n\n\n\n\n\n\n' |
+				egrep '>[^<>]+</' |
+					awk -F'[<>]' -v FILE="$1" '{ printf("%-31s\t%-15s\t%s\n", $3, $2, FILE) }' |
+						sort |
+							uniq -c |
+								sort -k2,2 -k3,3 |
+									awk '{
+										print ($2 == Last)? ($0 " <----") : $0
+										Last = $2
+									}'
+}
+
+for f in $@; do
+	process "$f"
+done
