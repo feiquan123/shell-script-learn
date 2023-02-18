@@ -23,6 +23,7 @@ IDFILE="$1"
 # 注意 -v count 需要带上引号
 awk -v count="$count" '
 	BEGIN {
+		# getline 读取文件中的数据赋值到 id 变量中
 		for (i = 1; getline id > 0; i++)
 			uidlist[i] = id
 		

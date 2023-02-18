@@ -1,6 +1,6 @@
-find / -user ben -print0 | xargs --null chown 301
-find / -user jhancock -print0 | xargs --null chown 300
-find / -user abe -print0 | xargs --null chown 4
-find / -user tj -print0 | xargs --null chown 5
-find / -user dorothy -print0 | xargs --null chown 6
-find / -user toto -print0 | xargs --null chown 7
+find / -user ben -print0 | xargs -0 chown 301
+find / -user jhancock -print0 | xargs -0 chown 300
+find / -user abe -print0 | xargs -0 chown 4
+find / -user tj -print0 | xargs -0 chown 5
+find / -user dorothy -print0 | xargs -0 chown 6
+find / -user toto -print0 | xargs -0 chown 7
