@@ -7,6 +7,8 @@
 # 	awk [-v Dictionaries="sysdict1 sysdict2 ..."] -f spell.awk -- \
 #		[=suffixfile1 =suffixfile2 ...] [+dict1 +dict2 ...]
 #		[-strip] [-verbose] [files(s)]	
+# Example:
+# 	awk -f spell.awk -- -strip  -verbose \=../data/english.sfx +../data/my.dict ../data/u1.passwd
 
 BEGIN 	{ initialize() }   	# 初始化 
 	{ spell_check_line() }	# 处理
@@ -17,14 +19,14 @@ function initialize(){
 
 	NonWordChars="[^" \
 		"'" \
-		"ABCEDFGHIJKLMNOPQRSTUVWXYZ" \
-		"abcefghijklmnopqrstuvwxyz" \
-		     "\241\242\243\244\245\246\247\248\249\250\251\252\253\254\255\256\257" \
-		"\260\261\262\263\264\265\266\267\268\269\270\271\272\273\274\275\276\277" \
-		"\300\301\302\303\304\305\306\307\308\309\310\311\312\313\314\315\316\317" \
-		"\320\321\322\323\324\325\326\327\328\329\330\331\332\333\334\335\336\337" \
-		"\340\341\342\343\344\345\346\347\348\349\350\351\352\353\354\355\356\357" \
-		"\360\361\362\363\364\365\366\367\368\369\370\371\372\373\374\375\376\377" \
+		"ABCDEFGHIJKLMNOPQRSTUVWXYZ" \
+		"abcdefghijklmnopqrstuvwxyz" \
+		    "\241\242\243\244\245\246\247\250\251\252\253\254\255\256\257" \
+		"\260\261\262\263\264\265\266\267\270\271\272\273\274\275\276\277" \
+		"\300\301\302\303\304\305\306\307\310\311\312\313\314\315\316\317" \
+		"\320\321\322\323\324\325\326\327\330\331\332\333\334\335\336\337" \
+		"\340\341\342\343\344\345\346\347\350\351\352\353\354\355\356\357" \
+		"\360\361\362\363\364\365\366\367\370\371\372\373\374\375\376\377" \
 	"]"
 
 	get_dictionaries()
@@ -61,7 +63,7 @@ function scan_options( 		k){
 			Strip=1
 		}else if(ARGV[k] == "-verbose"){
 			ARGV[k] = ""
-			verbose=1
+			Verbose=1
 		}else if(ARGV[k] ~ /^=/){ # 后缀文件
 			NSuffixFiles++
 			SuffixFiles[substr(ARGV[k],2)]++
@@ -121,7 +123,7 @@ function order_suffixes( 	i, j, key){
 
 	NOrderedSuffix = 0
 	for (key in Suffixes)
-		OrderSuffix[++NOrderedSuffix] = key
+		OrderedSuffix[++NOrderedSuffix] = key
 	
 	for (i = 1; i< NOrderedSuffix;  i++)
 		for (j = i+1; j< NOrderedSuffix; j ++)
@@ -137,15 +139,14 @@ function swap(a, i, j, temp){
 
 function spell_check_line( 	k, word){
 	# 对行进行处理
-
 	gsub(NonWordChars, " ") 	# 移除非单词字符
-	# for(k =1; k<= NF; k ++){
-	# 	word = $k
-	# 	sub("^'+", "", word) 	# 移除开头的 '
-	# 	sub("'+$", "", word) 	# 移除结尾的 '
-	# 	if (word != "")
-	# 		spell_check_word(word)
-	# }
+	for(k =1; k<= NF; k ++){
+		word = $k
+		sub("^'+", "", word) 	# 移除开头的 '
+		sub("'+$", "", word) 	# 移除结尾的 '
+		if (word != "")
+			spell_check_word(word)
+	}
 }
 
 function spell_check_word(word, 	key, lc_word, location, w, wordlist){
