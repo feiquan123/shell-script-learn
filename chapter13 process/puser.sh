@@ -37,7 +37,7 @@ esac
 
 ps $PSFLAGS |
 	sed -e 1d |
-		EGREP_OPTIONS= egrep "$EGREPFLAGS" |
+		EGREP_OPTIONS= egrep "$EGREPFLAGS" | 	# 清除 EGREP_OPTIONS 环境变量
 			sort -b -k1,1 -k2,2 |
 				uniq -c |
 					sort -b -k2,2 -k1nr,1 -k3,3 |
