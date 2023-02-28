@@ -8,3 +8,4 @@ jhancock:x:200:10:John Hancock:/home/jhancock:/bin/bash
 ben:x:201:10:Ben Franklin:/home/ben:/bin/bash
 abe:x:105:10:Honest Abe Lincoln:/home/abe:/bin/bash
 dorothy:x:110:10:Dorothy Gale:/home/dorothy:/bin/bash
+jumping:x:110:10:Jumping:/home/jumping:/bin/bash
