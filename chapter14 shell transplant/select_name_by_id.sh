@@ -4,20 +4,18 @@
 
 PS3="name?" 
 TMOUT=2 # 超时哈酒为 2s 
+
+ids=(1001 1002 1003)
 select name in 张三 李四 王五
 do
-	case $REPLY in
-	1) id="1001" ;;
-	2) id="1002" ;;
-	3) id="1003" ;;
-	*) echo "invalid." ;;
-	esac
-
 	if [ -n "$name" ]
 	then
+		id=${ids[REPLY - 1]}
 		echo your name: $name
 		echo your id: $id
 		break
+	else
+		echo "invalid."
 	fi
 done
 
